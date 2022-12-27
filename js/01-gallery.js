@@ -36,17 +36,19 @@ let instance = null;
 function OnModalClose(event) {
   if (event.code === "Escape") {
     instance.close();
-    console.log(event.code);
-
-    document.removeEventListener("keydown", OnModalClose);
+     
   }
+  console.log(event.code);
 }
+
+
 function onModalClick(url) {
   instance = basicLightbox.create(
     `
 	<img src = "${url}">
 `,
-    { onShow: document.addEventListener("keydown", OnModalClose) }
+    { onShow: () => document.addEventListener("keydown", OnModalClose), 
+    onClose: () => document.removeEventListener("keydown", OnModalClose) }
   );
   instance.show();
 }
