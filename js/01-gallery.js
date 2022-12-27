@@ -18,10 +18,14 @@ const markup = galleryItems.map(
 gallery.insertAdjacentHTML("beforeend", markup.join(""));
 
 function onGalleryItemClick(event) {
+ 
   event.preventDefault();
   const { target } = event;
   const selectedImgUrl = target.dataset.source;
 
+  if (target.nodeName !== 'IMG') {
+    return;
+  }
   onModalClick(selectedImgUrl);
 }
 
