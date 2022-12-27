@@ -30,19 +30,19 @@ gallery.addEventListener("click", onGalleryItemClick);
 let instance = null;
 
 function OnModalClose(event) {
-  
-    if (event.code === "Escape") {
-      instance.close();
-      console.log(event.code )
+  if (event.code === "Escape") {
+    instance.close();
+    console.log(event.code);
 
-      document.removeEventListener("keydown", OnModalClose)
-    }
+    document.removeEventListener("keydown", OnModalClose);
   }
+}
 function onModalClick(url) {
-  instance = basicLightbox.create(`
+  instance = basicLightbox.create(
+    `
 	<img src = "${url}">
-`, {onShow: document.addEventListener("keydown", OnModalClose)});
+`,
+    { onShow: document.addEventListener("keydown", OnModalClose) }
+  );
   instance.show();
-  
-
 }
